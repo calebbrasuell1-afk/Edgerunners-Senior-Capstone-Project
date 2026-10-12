@@ -14,11 +14,11 @@ The student teams are required to link the visualization and the AI chatbox to s
 
 
     Group Members          Roles
-    Caleb Brasuell     Leader / Developer
-    Jacob Couger       Customer Outreach
-    Nicholas Richard   Developer / QA
-    Michael Genovesi   Developer / QA
-    Arya Monfared      Secondary Developer 
+    Caleb Brasuell     Leader / UML Designer / Implementation plan
+    Jacob Couger       UML Designer / Implementation plan
+    Nicholas Richard   sequence diagrams Designer / Implementation plan
+    Michael Genovesi   Powerpoint Designer/ Implementation plan
+    Arya Monfared      Use-Case Designer / Implementation plan
 
 ## **Group meetings - TUE/THURS: 2pm**
 
