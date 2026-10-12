@@ -1,3 +1,5 @@
+<p style="color: #333333; font-family: sans-serif; font-size: 16px;">
+
 # Senior-Capstone-Project
 Analyzing cyber threats from log data (sample data will be provided)
 
@@ -20,7 +22,7 @@ The student teams are required to link the visualization and the AI chatbox to s
 
 ## **Group meetings - TUE/THURS: 2pm**
 
-## **Upcoming schedules - THURSDAY: 2PM - FRIDAY: 2PM - SATURDAY: TBD**
+## **Upcoming schedules - TUESDAY: 2PM - FRIDAY: 2PM - SATURDAY: TBD**
 
 It should automatically download the first 90 minutes of the data, and aggregate the data into a SQLite database, ready to be visualized. Please feel free to customize the codes, but you should at least extract the first 90 minutes of the raw data. 
 
@@ -36,7 +38,7 @@ Before developing the application, I recommend that you should spend some time t
 
 
 
-# Stage 1 
+# Stage 1 ----- DONE -----
 - [x] Due date: Sept 27 (Sunday) before 11:59 PM
 - [x] Submit report (e.g., PDF) and presentation slides 
 - [x] Submit the URL
@@ -67,5 +69,45 @@ Submit a PDF in IEEE conference format (two-column, 10 pt, letter size), minimum
 - [x]  Project plan (bullet points): based on your interview findings, list the modules or features you will build with a brief explanation of each
 - [x]  Prepare a 10 – 15 minute presentation accordingly and present your system and receive feedback from the instructor and other classmates during the class. The presentation schedule will be announced later.
 
+# Stage 2 
 
+- [ ] Due date: Oct 18, 2026 (Sunday) before 11:59 PM
+- [ ] Submit report (e.g., PDF) and presentation slides (e.g., PowerPoint) files through Canvas.
+- [ ] Update the group webpage that should include
+• Group members and their roles for this stage
+• Group meetings and activities
+• Upcoming schedules
+- [ ] he file names should include the stage and group_name, “stage#_group_name”. For example, stage2_MyGroup.pdf and stage2_MyGroup.pptx.
+<img width="713" height="234" alt="image" src="https://github.com/user-attachments/assets/61d112ba-2ef7-46db-bf33-8683c9594dc8" />
+
+# <u>Description</u>
+(i) Analyze your system and decompose it into a set of modules (objects or subsystems). Use UML diagrams to
+represent the modules and their relationships. To better understand your system, provide (a) class diagram(s),
+(b) use case diagram(s), and (c) sequence diagram(s).
+(ii) Explain the classes/objects/modules for each diagram.
+(iii) Think about how your system’s interface might look. Design an initial version of a user interface – a low-
+fidelity prototype – using any tool. Hand-drawn sketches are okay as long as they are clearly visible. Include
+several screenshots in your report, each labeled with the functions it supports. Follow the golden rules for UI
+design (will be discussed in class).
+
+# Deliverables
+
+- [ ] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
+o Project description (1 paragraph)
+o System analysis and decomposition: UML diagrams – class, use case, and sequence diagrams
+o Low-fidelity prototype
+o Implementation plan (at least half page) including testbed, programming language, any
+development tool/device, etc
+- [ ] Prepare a 10 - 15 minute presentation accordingly and present your system. The presentation schedule will be announced later.
+Clarity and correctness of the UML diagrams (use case, class, and sequence)
+• Clarity of low-fidelity prototype
+• Quality of project report
 • Quality of presentation (10 - 15 minutes)
+• Note: Although the report is two-column, diagrams may span both columns and should do so whenever
+needed for legibility. All text in a diagram must be readable without zooming in. Likewise, in the
+presentation slides, give each diagram its own full slide.
+- [ ] Clarity and correctness of the UML diagrams (use case, class, and sequence)
+- [ ] Clarity of low-fidelity prototype
+- [ ] Quality of project report
+- [ ] Quality of presentat
+</p>
