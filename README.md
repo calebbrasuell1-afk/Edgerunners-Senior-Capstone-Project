@@ -59,7 +59,7 @@ and their features. List all the functions that your system should support. Cons
 input/output of your system. Explain in as much detail as possible, for example, function environment, constraint,
 trade-off, and anything you may think important
 
-# Deliverables
+# Deliverables Stage 1 ----- DONE -----
 
 In this project, you should
 Submit a PDF in IEEE conference format (two-column, 10 pt, letter size), minimum two pages excludingappendices. The report must include:
@@ -81,11 +81,11 @@ Submit a PDF in IEEE conference format (two-column, 10 pt, letter size), minimum
 <img width="713" height="234" alt="image" src="https://github.com/user-attachments/assets/61d112ba-2ef7-46db-bf33-8683c9594dc8" />
 
 # <u>Description</u>
-(i) Analyze your system and decompose it into a set of modules (objects or subsystems). Use UML diagrams to
+- (i) Analyze your system and decompose it into a set of modules (objects or subsystems). Use UML diagrams to
 represent the modules and their relationships. To better understand your system, provide (a) class diagram(s),
 (b) use case diagram(s), and (c) sequence diagram(s).
-(ii) Explain the classes/objects/modules for each diagram.
-(iii) Think about how your system’s interface might look. Design an initial version of a user interface – a low-
+- (ii) Explain the classes/objects/modules for each diagram.
+- (iii) Think about how your system’s interface might look. Design an initial version of a user interface – a low-
 fidelity prototype – using any tool. Hand-drawn sketches are okay as long as they are clearly visible. Include
 several screenshots in your report, each labeled with the functions it supports. Follow the golden rules for UI
 design (will be discussed in class).
@@ -93,17 +93,17 @@ design (will be discussed in class).
 # Deliverables
 
 - [ ] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
-o Project description (1 paragraph)
-o System analysis and decomposition: UML diagrams – class, use case, and sequence diagrams
-o Low-fidelity prototype
-o Implementation plan (at least half page) including testbed, programming language, any
+-  Project description (1 paragraph)
+-  system analysis and decomposition: UML diagrams – class, use case, and sequence diagrams
+-  Low-fidelity prototype
+-  Implementation plan (at least half page) including testbed, programming language, any
 development tool/device, etc
 - [ ] Prepare a 10 - 15 minute presentation accordingly and present your system. The presentation schedule will be announced later.
 Clarity and correctness of the UML diagrams (use case, class, and sequence)
-• Clarity of low-fidelity prototype
-• Quality of project report
-• Quality of presentation (10 - 15 minutes)
-• Note: Although the report is two-column, diagrams may span both columns and should do so whenever
+- Clarity of low-fidelity prototype
+- Quality of project report
+- Quality of presentation (10 - 15 minutes)
+- Note: Although the report is two-column, diagrams may span both columns and should do so whenever
 needed for legibility. All text in a diagram must be readable without zooming in. Likewise, in the
 presentation slides, give each diagram its own full slide.
 - [ ] Clarity and correctness of the UML diagrams (use case, class, and sequence)
