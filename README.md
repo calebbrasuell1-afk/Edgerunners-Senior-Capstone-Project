@@ -73,11 +73,11 @@ Submit a PDF in IEEE conference format (two-column, 10 pt, letter size), minimum
 
 - [ ] Due date: Oct 18, 2026 (Sunday) before 11:59 PM
 - [ ] Submit report (e.g., PDF) and presentation slides (e.g., PowerPoint) files through Canvas.
-- [ ] Update the group webpage that should include
+- [x] Update the group webpage that should include
 • Group members and their roles for this stage
 • Group meetings and activities
 • Upcoming schedules
-- [ ] he file names should include the stage and group_name, “stage#_group_name”. For example, stage2_MyGroup.pdf and stage2_MyGroup.pptx.
+- [x] the file names should include the stage and group_name, “stage#_group_name”. For example, stage2_MyGroup.pdf and stage2_MyGroup.pptx.
 <img width="713" height="234" alt="image" src="https://github.com/user-attachments/assets/61d112ba-2ef7-46db-bf33-8683c9594dc8" />
 
 # <u>Description</u>
