@@ -69,10 +69,10 @@ Submit a PDF in IEEE conference format (two-column, 10 pt, letter size), minimum
 - [x]  Project plan (bullet points): based on your interview findings, list the modules or features you will build with a brief explanation of each
 - [x]  Prepare a 10 – 15 minute presentation accordingly and present your system and receive feedback from the instructor and other classmates during the class. The presentation schedule will be announced later.
 
-# Stage 2 
+# Stage 2 ----- DONE -----
 
-- [ ] Due date: Oct 18, 2026 (Sunday) before 11:59 PM
-- [ ] Submit report (e.g., PDF) and presentation slides (e.g., PowerPoint) files through Canvas.
+- [x] Due date: Oct 18, 2026 (Sunday) before 11:59 PM
+- [x] Submit report (e.g., PDF) and presentation slides (e.g., PowerPoint) files through Canvas.
 - [x] Update the group webpage that should include
 • Group members and their roles for this stage
 • Group meetings and activities
@@ -90,15 +90,15 @@ fidelity prototype – using any tool. Hand-drawn sketches are okay as long as t
 several screenshots in your report, each labeled with the functions it supports. Follow the golden rules for UI
 design (will be discussed in class).
 
-# Deliverables
+# Deliverables stage 2 ----- DONE -----
 
-- [ ] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
+- [x] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
 -  Project description (1 paragraph)
 -  system analysis and decomposition: UML diagrams – class, use case, and sequence diagrams
 -  Low-fidelity prototype
 -  Implementation plan (at least half page) including testbed, programming language, any
 development tool/device, etc
-- [ ] Prepare a 10 - 15 minute presentation accordingly and present your system. The presentation schedule will be announced later.
+- [x] Prepare a 10 - 15 minute presentation accordingly and present your system. The presentation schedule will be announced later.
 Clarity and correctness of the UML diagrams (use case, class, and sequence)
 - Clarity of low-fidelity prototype
 - Quality of project report
@@ -106,8 +106,56 @@ Clarity and correctness of the UML diagrams (use case, class, and sequence)
 - Note: Although the report is two-column, diagrams may span both columns and should do so whenever
 needed for legibility. All text in a diagram must be readable without zooming in. Likewise, in the
 presentation slides, give each diagram its own full slide.
-- [ ] Clarity and correctness of the UML diagrams (use case, class, and sequence)
-- [ ] Clarity of low-fidelity prototype
-- [ ] Quality of project report
-- [ ] Quality of presentat
+- [x] Clarity and correctness of the UML diagrams (use case, class, and sequence)
+- [x] Clarity of low-fidelity prototype
+- [x] Quality of project report
+- [x] Quality of presentat
+
+# Stage 3
+
+- [ ] Due dates: Nov 10, 2026 (Tuesday) before 11:59 PM
+- [ ] Submit report (e.g., PDF) and presentation slides (e.g., PowerPoint) files through Canvas.
+- [ ] Update the group webpage that should include:
+- [ ] Group members and their roles for this stage
+- [ ] Group meetings and activities
+- [ ] Validation results
+- [ ] The file names should include project number and group_name, “stage#_ group_name”. For example,
+stage3_MyGroup.pdf and stage3_MyGroup.pptx. 
+- Total score 40%
+- Type all your team members’ FULL names on the cover pages of the project report and presentation slides.
+- NO hand-written project report will be accepted.
+
+
+# <u>Description</u>
+
+The primary goal of this stage is to conduct a full demo, validation, and discuss the project implementation details
+with the instructor. 
+
+# Deliverables Stage 2
+
+- [ ] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
+o Project overview
+▪ Revised project definition and motivation
+o Design details
+▪ Revised UML diagrams – class, use case, and sequence diagrams with explanations.
+o Implementation details including:
+▪ Implementation overview
+▪ How to implement your project? Any related key technique(s)
+▪ What functionalities have been done?
+▪ What functionalities remain to be done?
+▪ Any implementation/technical issue?
+o Each team member’s contribution in terms of design, development, etc.
+o Validation of the developed application with the intended users
+o Remaining work and future extensions
+• Please write as much detail as possible using figures, pictures, tables, graphs, etc., if they can help.
+• Update the group project website.
+• Prepare a set of demo scenarios and conduct a 5 - 7 minutes full demo. 
+o Consider how to efficiently show your work.
+• All team members must attend in the demo. 
+
 </p>
+
+
+
+
+
