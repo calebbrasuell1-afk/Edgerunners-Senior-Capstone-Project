@@ -1,0 +1,8 @@
+.vscode
+data/
+pipeline/
+export_db.py
+requirements.txt
+README database.md
+.env
+csv_tables/
