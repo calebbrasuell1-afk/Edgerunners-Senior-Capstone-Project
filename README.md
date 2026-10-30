@@ -111,6 +111,9 @@ presentation slides, give each diagram its own full slide.
 - [x] Quality of project report
 - [x] Quality of presentat
 
+
+<img width="802" height="330" alt="AI Cybersecurity Class Diagram" src="https://github.com/user-attachments/assets/dc92e366-7195-41e0-a313-ad74a9cadb13" />
+
 # Stage 3
 
 - [ ] Due dates: Nov 10, 2026 (Tuesday) before 11:59 PM
