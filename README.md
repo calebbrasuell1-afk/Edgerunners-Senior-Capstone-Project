@@ -134,24 +134,24 @@ with the instructor.
 # Deliverables Stage 3
 
 - [ ] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
-o Project overview
-▪ Revised project definition and motivation
-o Design details
-▪ Revised UML diagrams – class, use case, and sequence diagrams with explanations.
-o Implementation details including:
-▪ Implementation overview
-▪ How to implement your project? Any related key technique(s)
-▪ What functionalities have been done?
-▪ What functionalities remain to be done?
-▪ Any implementation/technical issue?
-o Each team member’s contribution in terms of design, development, etc.
-o Validation of the developed application with the intended users
-o Remaining work and future extensions
-• Please write as much detail as possible using figures, pictures, tables, graphs, etc., if they can help.
-• Update the group project website.
-• Prepare a set of demo scenarios and conduct a 5 - 7 minutes full demo. 
-o Consider how to efficiently show your work.
-• All team members must attend in the demo. 
+- (i) Project overview
+    - (a) Revised project definition and motivation
+- (ii) Design details
+    - (a) Revised UML diagrams – class, use case, and sequence diagrams with explanations.
+- (iii) Implementation details including:
+      - (a) Implementation overview
+      - (b) How to implement your project? Any related key technique(s)
+      - (c) What functionalities have been done?
+      - (d) What functionalities remain to be done?
+      - (e) Any implementation/technical issue?
+- (iv) Each team member’s contribution in terms of design, development, etc.
+- (v) Validation of the developed application with the intended users
+- (vi) Remaining work and future extensions
+      - (a) Please write as much detail as possible using figures, pictures, tables, graphs, etc., if they can help.
+      - (b) Update the group project website.
+      - (c) Prepare a set of demo scenarios and conduct a 5 - 7 minutes full demo. 
+- (vii) Consider how to efficiently show your work.
+      - (a) All team members must attend in the demo. 
 
 </p>
 
