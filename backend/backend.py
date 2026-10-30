@@ -76,7 +76,11 @@ app = FastAPI(
     description="Backend API for network traffic analysis",
     version="1.0.0"
 )
+from fastapi.responses import RedirectResponse
 
+@app.get("/", include_in_schema=False)
+def home():
+    return RedirectResponse(url="/docs")
 
 # ALLOW FRONTEND CONNECTIONS
 app.add_middleware(
