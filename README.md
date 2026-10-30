@@ -131,7 +131,7 @@ stage3_MyGroup.pdf and stage3_MyGroup.pptx.
 The primary goal of this stage is to conduct a full demo, validation, and discuss the project implementation details
 with the instructor. 
 
-# Deliverables Stage 2
+# Deliverables Stage 3
 
 - [ ] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
 o Project overview
