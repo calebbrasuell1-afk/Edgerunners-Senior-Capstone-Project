@@ -16,12 +16,7 @@ db_closed_types = pd.read_sql_query('Select * from pair_close_types_parsed;', sq
 
 print("Tables loaded")
 
-db_flows.to_csv("csv_tables/flows.csv", index=True)
-db_edges.to_csv("csv_tables/edges.csv", index=True)
-db_hosts.to_csv("csv_tables/hosts.csv", index=True)
-db_buckets.to_csv("csv_tables/buckets.csv", index=True)
-db_events.to_csv("csv_tables/events.csv", index=True)
-db_regions.to_csv("csv_tables/regions.csv", index=True)
-db_closed_types.to_csv("csv_tables/closed_types.csv", index=True)
-
-print("Dataframes exported")
+"""
+Extract the timeframes 
+"""
+def extract_detections
