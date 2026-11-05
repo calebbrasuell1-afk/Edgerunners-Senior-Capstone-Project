@@ -7,6 +7,7 @@
 # - Python 3.14 or compatible version
 # - FastAPI
 # - Uvicorn
+# - Ollama 3.2
 #
 # STEP 1: Open CMD (Command Prompt)
 #
@@ -40,7 +41,12 @@
 # GET  /health       - Check backend and database connection
 # GET  /hosts/top    - Retrieve highest-fanout hosts
 # POST /host         - Retrieve information about a specific IP
-#
+# POST /sql
+# POST /ask
+# GET /regions
+# POST /hosts/filter
+# GET /timeline/{ip}
+# POST /graph
 # ============================================================
 # IMPORTANT NOTES
 # ============================================================
