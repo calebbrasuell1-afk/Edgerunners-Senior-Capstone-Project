@@ -31,7 +31,11 @@
 # STEP 7: Check database connection:
 # http://127.0.0.1:8000/health
 #
-# STEP 8: Stop the server:
+# STEP 8: Run example queries in POST /ask
+# {"question": "What are the fanout, syn_no_synack and anomaly_score of this host?", "scope": {"hosts": ["172.28.4.7"]}}
+# {"question": "Is this host behaving abnormally compared with normal hosts, and why?", "scope": {"hosts": ["172.28.4.7"], "time_start": 1257255155, "time_end": 1257258875}}
+#
+# STEP 9: Stop the server:
 # Press CTRL + C in CMD.
 #
 # ============================================================
