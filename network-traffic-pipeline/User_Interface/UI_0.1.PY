@@ -15,6 +15,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
+from traffic_graph import show_traffic_graph
 
 st.set_page_config(page_title="Application Dashboard", layout="wide")
 st.title("Application Dashboard")
@@ -57,7 +58,7 @@ with database_tab:
 	st.subheader("Browse database")
 	db_path = Path(database_path)
 	if not db_path.is_file():
-		st.info("Database file not found. Set SQLITE_DB_PATH to the SQLite file location.")
+		st.info("Database file not found. Set NETWORK_DB_PATH to the SQLite file location.")
 	else:
 		try:
 			with sqlite3.connect(f"file:{db_path.resolve().as_posix()}?mode=ro", uri=True) as connection:
@@ -74,6 +75,8 @@ with database_tab:
 					rows = pd.read_sql_query(f"SELECT * FROM {safe_table} LIMIT 500", connection)
 					st.dataframe(rows, use_container_width=True, hide_index=True)
 					st.caption("Showing at most 500 rows.")
+					show_traffic_graph(connection)
+					
 		except Exception as error:
 			st.error(f"Unable to read database: {error}")
 
