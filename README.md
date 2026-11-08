@@ -14,11 +14,11 @@ The student teams are required to link the visualization and the AI chatbox to s
 
 
     Group Members          Roles
-    Caleb Brasuell     Leader / sequence diagrams Designer / Implementation plan
-    Jacob Couger       UML Designer / Implementation plan
-    Nicholas Richard   Use-Case Designer / Implementation plan
-    Michael Genovesi   Powerpoint Designer/ Implementation plan
-    Arya Monfared      UML Designer / Implementation plan
+    Caleb Brasuell     Leader / programmer 
+    Jacob Couger       Unavailable 
+    Nicholas Richard    programmer 
+    Michael Genovesi    programmer 
+    Arya Monfared       programmer 
 
 ## **Group meetings - TUE/THURS: 2pm**
 
