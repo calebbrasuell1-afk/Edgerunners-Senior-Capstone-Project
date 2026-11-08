@@ -1,0 +1,56 @@
+# Configuration for the PCAP aggregation pipeline.
+
+# --- Download (component 1) -------------------------------------------------
+# Index page that lists the *.pcap.xz files, plus a regex that matches the
+# hrefs you want. Fill source_url in when you have it; the orchestrator can be
+# run with --skip-download to use files already in raw_dir.
+download:
+  # This is typically a personal/authenticated share link, not a public URL --
+  # keep the real value out of version control. Secrets live in the gitignored
+  # `.env` file (or real env vars) as PCAP_DL_SOURCE_URL, which overrides this.
+  source_url: ""                       # e.g. ".../DARPA_Scalable_Network_Monitoring-20091103/set1/"
+  link_regex: 'mypcap_\d+\.pcap\.xz'   # which links on the page to fetch
+  verify_tls: true
+  # HTTP Basic Auth (the site shows a native username/password popup). Leave
+  # blank for public pages. Secrets live in the gitignored `.env` file (or real
+  # env vars) as PCAP_DL_USERNAME / PCAP_DL_PASSWORD, which override these.
+  username: ""
+  password: ""
+  # Limit how many matching files to fetch -- useful for a big dir like set1.
+  max_files: 105                        # 0 = no limit; otherwise stop after N files
+                                        # 105 files = the first 90 minutes of set1
+  skip: 0                               # skip the first N matches (resume/paging)
+
+# --- Paths ------------------------------------------------------------------
+paths:
+  raw_dir: "data/raw"                  # transient .pcap.xz / .pcap (deleted after parse)
+  db_path: "data/network.db"           # SQLite output
+  export_dir: "data/export"            # JSON output (the browser app reads these)
+  ground_truth: "NETWORK_GROUNDTRUTH_DATA/GroundTruth_UTC_naive 2.csv"
+  detector_results: "NETWORK_DETECTOR_RESULTS/detector-results.json"
+  # Fallback: directory holding already-extracted/compressed captures when not
+  # downloading. The orchestrator looks here (then raw_dir) for *.pcap.xz/*.pcap.
+  local_source_dir: "."
+  # Archived per-flow parquet shards (with close_type) for the same capture, used
+  # to build pair_close_types (edge close-type distributions in the Force Graph).
+  # Optional -- if the directory doesn't exist, the rollup step is skipped and
+  # export falls back to detector_pairs (flagged pairs only).
+  flow_shards_dir: ""
+
+# --- Parsing / aggregation --------------------------------------------------
+parse:
+  internal_cidr: "172.28.0.0/16"       # defines "internal" hosts
+  workers: 5                           # parallel files (<= min(file_count, cores))
+  # Drop flows below this many packets from the heavy flows table (0 = keep all).
+  min_packets: 0
+
+# --- Ground-truth labeling --------------------------------------------------
+label:
+  tolerance_seconds: 60                # +/- window applied to GT start/stop times
+
+# --- JSON export (keeps the browser responsive) -----------------------------
+export:
+  top_n_nodes: 20000                   # safety bound on isolated host additions
+  top_n_edges: 30000                   # heaviest host-pair edges for background context
+                                       # (malicious + the full finding neighborhood are always kept)
+  timeline_bucket_seconds: 60          # bucket size for the TimeArcs timeline
