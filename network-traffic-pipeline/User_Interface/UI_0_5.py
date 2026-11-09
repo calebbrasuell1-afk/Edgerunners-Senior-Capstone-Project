@@ -109,7 +109,7 @@ with st.sidebar:
                 st.code(backend_log.read_text(errors="replace")[-3000:] or "(empty)")
 
 
-database_tab, backend_tab = st.tabs(["Database", "Backend", "Graphs"])
+database_tab, backend_tab, graphs_tab = st.tabs(["Database", "Backend", "Graphs"])
 
 with database_tab:
     st.subheader("Browse database")
