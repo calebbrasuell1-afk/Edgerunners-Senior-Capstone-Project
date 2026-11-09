@@ -22,6 +22,7 @@ import requests
 import streamlit as st
 
 from traffic_graph import show_traffic_graph
+from graphs import show_graphs
 
 st.set_page_config(page_title="Application Dashboard", layout="wide")
 st.title("Application Dashboard")
@@ -108,7 +109,7 @@ with st.sidebar:
                 st.code(backend_log.read_text(errors="replace")[-3000:] or "(empty)")
 
 
-database_tab, backend_tab = st.tabs(["Database", "Backend"])
+database_tab, backend_tab = st.tabs(["Database", "Backend", "Graphs"])
 
 with database_tab:
     st.subheader("Browse database")
@@ -157,3 +158,5 @@ with backend_tab:
                 st.error(f"{r.status_code}: {r.json().get('detail', r.text)}")
         except requests.exceptions.ConnectionError:
             st.error("Can't reach the backend. Check the Backend log in the sidebar.")
+with graphs_tab:
+    show_graphs(database_path)
