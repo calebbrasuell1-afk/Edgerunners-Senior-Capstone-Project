@@ -24,18 +24,32 @@ const H=D.hosts.length*rh+m.t+m.b;
 const svg=d3.select("#c").append("svg").attr("width",W).attr("height",H);
 const x=d3.scaleUtc().domain([new Date(D.t0*1000),new Date(D.t1*1000)]).range([m.l,W-m.r]);
 const y=d3.scalePoint().domain(D.hosts).range([m.t,H-m.b]).padding(0.5);
+const info=svg.append("text").attr("x",6).attr("y",14).attr("fill","#ddd");
 svg.append("g").attr("transform","translate(0,20)").call(d3.axisTop(x).ticks(8)).selectAll("text").attr("fill","#ddd");
 svg.selectAll(".row").data(D.hosts).join("line").attr("x1",m.l).attr("x2",W-m.r)
   .attr("y1",d=>y(d)).attr("y2",d=>y(d)).attr("stroke","#333");
-svg.selectAll(".lab").data(D.hosts).join("text").attr("x",m.l-6).attr("y",d=>y(d)+3)
-  .attr("text-anchor","end").attr("fill","#ddd").text(d=>d);
-svg.selectAll("path.arc").data(D.arcs).join("path")
-  .attr("fill","none").attr("opacity",.65)
-  .attr("stroke",d=>d.f?"#ff9f1c":"#4cc9f0")
+const labels=svg.selectAll(".lab").data(D.hosts).join("text").style("cursor","pointer")
+  .attr("x",m.l-6).attr("y",d=>y(d)+3).attr("text-anchor","end").text(d=>d);
+const arcs=svg.selectAll("path.arc").data(D.arcs).join("path").style("cursor","pointer")
+  .attr("fill","none")
   .attr("stroke-width",d=>Math.min(4,0.5+Math.log10(d.n+1)))
   .attr("d",d=>{const a=y(d.s),b=y(d.t),r=Math.abs(b-a)/2,xx=x(new Date(d.ts*1000));
-    return `M${xx},${a} A${r},${r} 0 0 ${b>a?1:0} ${xx},${b}`;})
-  .append("title").text(d=>`${d.s} -> ${d.t}\\n${d.n} flows${d.f?" (detector flagged)":""}`);
+    return `M${xx},${a} A${r},${r} 0 0 ${b>a?1:0} ${xx},${b}`;});
+arcs.append("title").text(d=>`${d.s} -> ${d.t}\\n${d.n} flows${d.f?" (detector flagged)":""}`);
+const sel=new Set();
+function paint(){
+  const on=sel.size>0, act=d=>!on||sel.has(d.s)||sel.has(d.t);
+  arcs.attr("opacity",d=>act(d)?.85:.05)
+      .attr("stroke",d=>on&&act(d)?"#ff3860":(d.f?"#ff9f1c":"#4cc9f0"));
+  labels.attr("fill",d=>sel.has(d)?"#ff3860":"#ddd")
+        .attr("font-weight",d=>sel.has(d)?"bold":"normal")
+        .attr("opacity",d=>!on||sel.has(d)?1:.45);
+  info.text(on?`${[...sel].join(" , ")} | ${D.arcs.filter(act).length} arcs`:"Click a host or arc. Click empty space to clear.");
+}
+labels.on("click",(e,d)=>{e.stopPropagation();const same=sel.size===1&&sel.has(d);sel.clear();if(!same)sel.add(d);paint();});
+arcs.on("click",(e,d)=>{e.stopPropagation();sel.clear();sel.add(d.s);sel.add(d.t);paint();});
+svg.on("click",()=>{sel.clear();paint();});
+paint();
 </script>
 """
 
@@ -88,29 +102,45 @@ const D=__DATA__, cw=170, rh=16, m={l:30,t:60};
 const maxN=d3.max(D.regions,r=>r.hosts.length)||1;
 const W=m.l+cw*D.regions.length+120, H=m.t+maxN*rh+60;
 const svg=d3.select("#c").append("svg").attr("width",W).attr("height",H);
+const info=svg.append("text").attr("x",6).attr("y",12).attr("fill","#ddd");
 const col=d3.scaleOrdinal(d3.schemeTableau10).domain(D.tracked);
 const order=new Map(D.tracked.map((h,i)=>[h,i]));
 const pos={};
-D.regions.forEach((r,i)=>{
-  const hs=[...r.hosts].sort((a,b)=>order.get(a)-order.get(b));
-  hs.forEach((h,j)=>{(pos[h]=pos[h]||[]).push({i,x:m.l+i*cw+60,y:m.t+j*rh+rh/2});});
-  svg.append("rect").attr("x",m.l+i*cw+40).attr("y",m.t-4).attr("width",40)
-    .attr("height",hs.length*rh+8).attr("rx",6).attr("fill","#222").attr("stroke","#555");
-  svg.append("text").attr("x",m.l+i*cw+60).attr("y",m.t-30).attr("text-anchor","middle")
-    .attr("fill","#fff").text(r.type);
-  svg.append("text").attr("x",m.l+i*cw+60).attr("y",m.t-18).attr("text-anchor","middle")
-    .attr("fill","#999").text(r.when+"  ("+r.n+" hosts)");
+const regG=svg.selectAll("g.reg").data(D.regions).join("g").attr("class","reg").style("cursor","pointer");
+regG.each((r,i)=>{
+  [...r.hosts].sort((a,b)=>order.get(a)-order.get(b))
+    .forEach((h,j)=>{(pos[h]=pos[h]||[]).push({h,i,x:m.l+i*cw+60,y:m.t+j*rh+rh/2});});
 });
+regG.append("rect").attr("x",(r,i)=>m.l+i*cw+40).attr("y",m.t-4).attr("width",40)
+  .attr("height",r=>r.hosts.length*rh+8).attr("rx",6).attr("fill","#222").attr("stroke","#555");
+regG.append("text").attr("x",(r,i)=>m.l+i*cw+60).attr("y",m.t-30).attr("text-anchor","middle")
+  .attr("fill","#fff").text(r=>r.type);
+regG.append("text").attr("x",(r,i)=>m.l+i*cw+60).attr("y",m.t-18).attr("text-anchor","middle")
+  .attr("fill","#999").text(r=>r.when+"  ("+r.n+" hosts)");
 const line=d3.line().curve(d3.curveMonotoneX);
-for(const h in pos){
-  const p=pos[h].sort((a,b)=>a.i-b.i);
-  svg.append("path").attr("d",line(p.map(q=>[q.x,q.y]))).attr("fill","none")
-    .attr("stroke",col(h)).attr("stroke-width",2).attr("opacity",.8);
-  svg.selectAll(null).data(p).join("circle").attr("cx",q=>q.x).attr("cy",q=>q.y)
-    .attr("r",3.5).attr("fill",col(h)).append("title").text(h);
-  const last=p[p.length-1];
-  svg.append("text").attr("x",last.x+10).attr("y",last.y+3).attr("fill",col(h)).text(h);
+const hostG=svg.selectAll("g.h").data(Object.keys(pos)).join("g").attr("class","h").style("cursor","pointer");
+hostG.each(h=>pos[h].sort((a,b)=>a.i-b.i));
+hostG.append("path").attr("d",h=>line(pos[h].map(q=>[q.x,q.y]))).attr("fill","none")
+  .attr("stroke",h=>col(h)).attr("stroke-width",2);
+hostG.append("path").attr("d",h=>line(pos[h].map(q=>[q.x,q.y]))).attr("fill","none")
+  .attr("stroke","transparent").attr("stroke-width",10);
+hostG.selectAll("circle").data(h=>pos[h]).join("circle").attr("cx",q=>q.x).attr("cy",q=>q.y)
+  .attr("r",3.5).attr("fill",q=>col(q.h)).append("title").text(q=>q.h);
+const lab=hostG.append("text").attr("x",h=>pos[h][pos[h].length-1].x+10)
+  .attr("y",h=>pos[h][pos[h].length-1].y+3).text(h=>h);
+const sel=new Set();
+function paint(){
+  const on=sel.size>0;
+  hostG.attr("opacity",h=>!on||sel.has(h)?1:.1);
+  hostG.select("path").attr("stroke-width",h=>on&&sel.has(h)?4:2);
+  lab.attr("fill",h=>on&&sel.has(h)?"#ff3860":col(h));
+  info.text(on?`${sel.size} host${sel.size>1?"s":""}: ${[...sel].slice(0,4).join(" , ")}${sel.size>4?" ...":""}`
+              :"Click a host or stage. Click empty space to clear.");
 }
+hostG.on("click",(e,h)=>{e.stopPropagation();const same=sel.size===1&&sel.has(h);sel.clear();if(!same)sel.add(h);paint();});
+regG.on("click",(e,r)=>{e.stopPropagation();sel.clear();r.hosts.forEach(h=>sel.add(h));paint();});
+svg.on("click",()=>{sel.clear();paint();});
+paint();
 </script>
 """
 
@@ -161,14 +191,20 @@ def _host_info(conn):
 FORCE = """
 <div id="c"></div><script>
 const D=__DATA__, W=1100, H=650;
+const sid=l=>l.source.id??l.source, tid=l=>l.target.id??l.target;
+const nb=new Map(D.nodes.map(n=>[n.id,new Set([n.id])]));
+D.links.forEach(l=>{nb.get(sid(l)).add(tid(l)); nb.get(tid(l)).add(sid(l));});
 const svg=d3.select("#c").append("svg").attr("width",W).attr("height",H);
 const g=svg.append("g");
 svg.call(d3.zoom().scaleExtent([0.2,6]).on("zoom",e=>g.attr("transform",e.transform)));
+const info=svg.append("text").attr("x",10).attr("y",18).attr("fill","#ddd");
 const color=d=>d.f?"#ff9f1c":(d.i?"#4cc9f0":"#b5b5b5");
-const link=g.append("g").attr("stroke-opacity",.45).selectAll("line").data(D.links).join("line")
-  .attr("stroke",d=>d.f?"#ff9f1c":"#667").attr("stroke-width",d=>Math.min(4,0.5+Math.log10(d.n+1)));
-link.append("title").text(d=>`${d.source} -> ${d.target} | ${d.n} flows`);
+const link=g.append("g").selectAll("line").data(D.links).join("line")
+  .attr("stroke",d=>d.f?"#ff9f1c":"#667").attr("stroke-opacity",.45)
+  .attr("stroke-width",d=>Math.min(4,0.5+Math.log10(d.n+1)));
+link.append("title").text(d=>`${sid(d)} -> ${tid(d)} | ${d.n} flows`);
 const node=g.append("g").selectAll("path").data(D.nodes).join("path")
+  .style("cursor","pointer")
   .attr("d",d=>d3.symbol().type(d.i?d3.symbolSquare:d3.symbolCircle).size(40+18*d.deg)())
   .attr("fill",color).attr("stroke","#111")
   .call(d3.drag()
@@ -176,6 +212,15 @@ const node=g.append("g").selectAll("path").data(D.nodes).join("path")
     .on("drag",(e,d)=>{d.fx=e.x;d.fy=e.y;})
     .on("end",(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}));
 node.append("title").text(d=>`${d.id} | ${d.i?"internal":"external"} | ${d.deg} links${d.f?" | detector flagged":""}`);
+let cur=null;
+function paint(){
+  node.attr("opacity",d=>!cur||nb.get(cur).has(d.id)?1:.08)
+      .attr("stroke",d=>d.id===cur?"#fff":"#111").attr("stroke-width",d=>d.id===cur?3:1);
+  link.attr("stroke-opacity",d=>!cur||sid(d)===cur||tid(d)===cur?.9:.03);
+  info.text(cur?`${cur} | ${nb.get(cur).size-1} neighbors`:"Click a node. Click empty space to clear.");
+}
+node.on("click",(e,d)=>{e.stopPropagation();cur=cur===d.id?null:d.id;paint();});
+svg.on("click",()=>{cur=null;paint();});
 const sim=d3.forceSimulation(D.nodes)
   .force("link",d3.forceLink(D.links).id(d=>d.id).distance(40))
   .force("charge",d3.forceManyBody().strength(-70))
@@ -185,6 +230,7 @@ const sim=d3.forceSimulation(D.nodes)
     link.attr("x1",d=>d.source.x).attr("y1",d=>d.source.y).attr("x2",d=>d.target.x).attr("y2",d=>d.target.y);
     node.attr("transform",d=>`translate(${d.x},${d.y})`);
   });
+paint();
 </script>
 """
 
@@ -218,19 +264,33 @@ const svg=d3.select("#c").append("svg").attr("width",W).attr("height",H);
 const idx=new Map(D.hosts.map((h,i)=>[h.ip,i]));
 const mx=d3.max(D.cells,d=>Math.log1p(d.n))||1;
 const col=d3.scaleSequential(d3.interpolateYlOrRd).domain([0,mx]);
+const info=svg.append("text").attr("x",6).attr("y",14).attr("fill","#ddd");
 svg.append("rect").attr("x",m.l).attr("y",m.t).attr("width",N*cs).attr("height",N*cs)
   .attr("fill","#1b1b1b").attr("stroke","#444");
-svg.selectAll(".r").data(D.hosts).join("text").attr("x",m.l-4).attr("y",(d,i)=>m.t+i*cs+cs*0.7)
-  .attr("text-anchor","end").attr("font-size",Math.min(10,cs-2))
-  .attr("fill",d=>d.i?"#4cc9f0":"#ddd").text(d=>d.ip);
-svg.selectAll(".c").data(D.hosts).join("text")
+const fs=Math.min(10,cs-2);
+const rows=svg.selectAll(".r").data(D.hosts).join("text").style("cursor","pointer")
+  .attr("x",m.l-4).attr("y",(d,i)=>m.t+i*cs+cs*0.7).attr("text-anchor","end").attr("font-size",fs).text(d=>d.ip);
+const cols=svg.selectAll(".c").data(D.hosts).join("text").style("cursor","pointer")
   .attr("transform",(d,i)=>`translate(${m.l+i*cs+cs*0.7},${m.t-4}) rotate(-90)`)
-  .attr("font-size",Math.min(10,cs-2)).attr("fill",d=>d.i?"#4cc9f0":"#ddd").text(d=>d.ip);
-svg.selectAll("rect.cell").data(D.cells).join("rect")
+  .attr("font-size",fs).text(d=>d.ip);
+const cells=svg.selectAll("rect.cell").data(D.cells).join("rect").style("cursor","pointer")
   .attr("x",d=>m.l+idx.get(d.t)*cs).attr("y",d=>m.t+idx.get(d.s)*cs)
-  .attr("width",cs-1).attr("height",cs-1).attr("fill",d=>col(Math.log1p(d.n)))
-  .attr("stroke",d=>d.f?"#4cc9f0":"none").attr("stroke-width",1.5)
-  .append("title").text(d=>`${d.s} -> ${d.t} | ${d.n} flows${d.f?" | detector flagged":""}`);
+  .attr("width",cs-1).attr("height",cs-1).attr("fill",d=>col(Math.log1p(d.n)));
+cells.append("title").text(d=>`${d.s} -> ${d.t} | ${d.n} flows${d.f?" | detector flagged":""}`);
+const sel=new Set();
+function paint(){
+  const on=sel.size>0, act=d=>!on||sel.has(d.s)||sel.has(d.t);
+  cells.attr("opacity",d=>act(d)?1:.07)
+       .attr("stroke",d=>on&&act(d)?"#fff":(d.f?"#4cc9f0":"none")).attr("stroke-width",d=>on&&act(d)?1:1.5);
+  [rows,cols].forEach(s=>s.attr("fill",d=>sel.has(d.ip)?"#ff3860":(d.i?"#4cc9f0":"#ddd"))
+    .attr("font-weight",d=>sel.has(d.ip)?"bold":"normal").attr("opacity",d=>!on||sel.has(d.ip)?1:.5));
+  info.text(on?`${[...sel].join(" , ")} | ${D.cells.filter(act).length} cells`:"Click a label or cell. Click empty space to clear.");
+}
+function pick(e,ip){e.stopPropagation();const same=sel.size===1&&sel.has(ip);sel.clear();if(!same)sel.add(ip);paint();}
+rows.on("click",(e,d)=>pick(e,d.ip)); cols.on("click",(e,d)=>pick(e,d.ip));
+cells.on("click",(e,d)=>{e.stopPropagation();sel.clear();sel.add(d.s);sel.add(d.t);paint();});
+svg.on("click",()=>{sel.clear();paint();});
+paint();
 </script>
 """
 
@@ -270,7 +330,7 @@ def nodetrix(conn, db_path):
 # ------------------------------------------------------------------ BioFabric
 BIOFABRIC = """
 <div id="c"></div><script>
-const D=__DATA__, rh=14, cw=9, m={l:140,t:20};
+const D=__DATA__, rh=14, cw=9, m={l:140,t:28};
 const adj=new Map();
 D.edges.forEach(e=>{
   if(!adj.has(e.s))adj.set(e.s,[]); if(!adj.has(e.t))adj.set(e.t,[]);
@@ -287,19 +347,39 @@ const edges=D.edges.map(e=>({...e,a:Math.min(row.get(e.s),row.get(e.t)),b:Math.m
   .sort((x,y)=>x.a-y.a||x.b-y.b);
 const W=m.l+edges.length*cw+20, H=m.t+order.length*rh+20;
 const svg=d3.select("#c").append("svg").attr("width",W).attr("height",H);
-const ry=h=>m.t+row.get(h)*rh+rh/2;
+const info=svg.append("text").attr("x",6).attr("y",14).attr("fill","#ddd");
+const ry=h=>m.t+row.get(h)*rh+rh/2, ex=i=>m.l+i*cw+cw/4;
 const span=new Map();
 edges.forEach((e,i)=>{[e.s,e.t].forEach(h=>{const s=span.get(h)||[i,i];s[0]=Math.min(s[0],i);s[1]=Math.max(s[1],i);span.set(h,s);});});
-order.forEach(h=>{const s=span.get(h);
-  svg.append("line").attr("x1",m.l+s[0]*cw).attr("x2",m.l+s[1]*cw+cw/2)
-    .attr("y1",ry(h)).attr("y2",ry(h)).attr("stroke","#777");
-  svg.append("text").attr("x",m.l+s[0]*cw-4).attr("y",ry(h)+3).attr("text-anchor","end")
-    .attr("font-size",9).attr("fill",D.internal[h]?"#4cc9f0":"#ddd").text(h);});
-edges.forEach((e,i)=>{const x=m.l+i*cw+cw/4, c=e.f?"#ff9f1c":"#4cc9f0";
-  svg.append("line").attr("x1",x).attr("x2",x).attr("y1",ry(e.s)).attr("y2",ry(e.t))
-    .attr("stroke",c).attr("stroke-width",1.5).append("title")
-    .text(`${e.s} -> ${e.t} | ${e.n} flows${e.f?" | detector flagged":""}`);
-  svg.append("circle").attr("cx",x).attr("cy",ry(e.s)).attr("r",2.5).attr("fill",c);});
+const hostG=svg.selectAll("g.h").data(order).join("g").attr("class","h").style("cursor","pointer");
+hostG.append("line").attr("x1",h=>m.l+span.get(h)[0]*cw).attr("x2",h=>m.l+span.get(h)[1]*cw+cw/2)
+  .attr("y1",ry).attr("y2",ry).attr("stroke","#777");
+hostG.append("line").attr("x1",h=>m.l+span.get(h)[0]*cw).attr("x2",h=>m.l+span.get(h)[1]*cw+cw/2)
+  .attr("y1",ry).attr("y2",ry).attr("stroke","transparent").attr("stroke-width",10);
+hostG.append("text").attr("x",h=>m.l+span.get(h)[0]*cw-4).attr("y",h=>ry(h)+3)
+  .attr("text-anchor","end").attr("font-size",9).text(h=>h);
+const edgeG=svg.selectAll("g.e").data(edges).join("g").attr("class","e").style("cursor","pointer");
+edgeG.append("line").attr("x1",(e,i)=>ex(i)).attr("x2",(e,i)=>ex(i))
+  .attr("y1",e=>ry(e.s)).attr("y2",e=>ry(e.t)).attr("stroke",e=>e.f?"#ff9f1c":"#4cc9f0").attr("stroke-width",1.5);
+edgeG.append("line").attr("x1",(e,i)=>ex(i)).attr("x2",(e,i)=>ex(i))
+  .attr("y1",e=>ry(e.s)).attr("y2",e=>ry(e.t)).attr("stroke","transparent").attr("stroke-width",7);
+edgeG.append("circle").attr("cx",(e,i)=>ex(i)).attr("cy",e=>ry(e.s)).attr("r",2.5)
+  .attr("fill",e=>e.f?"#ff9f1c":"#4cc9f0");
+edgeG.append("title").text(e=>`${e.s} -> ${e.t} | ${e.n} flows${e.f?" | detector flagged":""}`);
+const sel=new Set();
+function paint(){
+  const on=sel.size>0, act=e=>!on||sel.has(e.s)||sel.has(e.t);
+  const nbr=new Set(); edges.forEach(e=>{if(act(e)){nbr.add(e.s);nbr.add(e.t);}});
+  edgeG.attr("opacity",e=>act(e)?1:.06);
+  hostG.attr("opacity",h=>!on||nbr.has(h)?1:.12);
+  hostG.select("text").attr("fill",h=>sel.has(h)?"#ff3860":(D.internal[h]?"#4cc9f0":"#ddd"))
+    .attr("font-weight",h=>sel.has(h)?"bold":"normal");
+  info.text(on?`${[...sel].join(" , ")} | ${edges.filter(act).length} edges`:"Click a host or edge. Click empty space to clear.");
+}
+hostG.on("click",(ev,h)=>{ev.stopPropagation();const same=sel.size===1&&sel.has(h);sel.clear();if(!same)sel.add(h);paint();});
+edgeG.on("click",(ev,e)=>{ev.stopPropagation();sel.clear();sel.add(e.s);sel.add(e.t);paint();});
+svg.on("click",()=>{sel.clear();paint();});
+paint();
 </script>
 """
 
