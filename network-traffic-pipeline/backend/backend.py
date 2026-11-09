@@ -248,6 +248,8 @@ def get_host(request: HostRequest):
         conn.close()
 
 
+
+
 BLOCKED_TABLES = {"gt_events"}
 BLOCKED_COLUMNS = {
     ("flows", "label"), ("flows", "attack_type"),
