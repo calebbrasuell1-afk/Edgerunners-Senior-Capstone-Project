@@ -20,145 +20,30 @@ The student teams are required to link the visualization and the AI chatbox to s
     Michael Genovesi   	PowerPoint Designer/ Programmer 
     Arya Monfared      	UML Designer / Programmer 
 
+# ============================================================
+# NETWORK TRAFFIC ANALYZER
+# ============================================================
+#
+# STEP 1: Open CMD (Command Prompt)
+#
+# cd to the directory containing this file and run:
+#
+# STEP 2: Navigate to the backend directory:
+#
+# Follow instructions in pipeline folder to acquire database and move to network-traffic-pipeline folder/User_Interface 
+#
+# pip install streamlit fastapi uvicorn requests
+#
+# Install Ollama (ollama.com), then run once: ollama pull gemma3:4b
+#
+# STEP 3: Run the Streamlit app: streamlit run UI_0_6.py
+#
+# STEP 4: Stop the server:
+# Press CTRL + C in CMD.
 
 
-<img width="712" height="203" alt="image" src="https://github.com/user-attachments/assets/806178a4-2c97-426a-bcf4-1ee168de3f09" />
 
 
-## **Group meetings - TUE/THURS: 2pm**
-
-## **Upcoming schedules - No more upcoming events or meetings 
-
-It should automatically download the first 90 minutes of the data, and aggregate the data into a SQLite database, ready to be visualized. Please feel free to customize the codes, but you should at least extract the first 90 minutes of the raw data. 
-
-How an AI-powered investigation may work:
-    You look at the visualization and find something that stands out.
-    You select the related hosts and/or the time window with a selection tool.
-    You ask the AI assistant a question. Your selection is the scope of the answer.
-    The assistant answers, and writes its answer back onto the visualization.
-    Repeat until you both come to a conclusion.
-
-    
-Before developing the application, I recommend that you should spend some time to understand the data, research some network data visualization techniques, and draft out how the application is going to look like.
-
-
-
-# Stage 1 ----- DONE -----
-- [x] Due date: Sept 27 (Sunday) before 11:59 PM
-- [x] Submit report (e.g., PDF) and presentation slides 
-- [x] Submit the URL
-- [x] The file names should include the stage and group_name, “stage#_group_name”. For example, stage1_MyGroup.pdf and stage1_MyGroup.pptx.
-Description
-Analyze potential target users and identify any function and performance requirement of your system.
-- [x] (i) First, in order to analyze the users, interview (e.g., zoom, call, email, etc.) at least four or five users who are not
-taking CS4366. Be specific about the users, for example range of age, culture, computer/IT experience, attitude, and
-anything you may think important. Prepare several questions and log interviews (multiple pages) and summarize them
-(half page). 
-
-- [x] (ii) Refer to IEEE Std 830-1998 (IEEE Recommended Practice for Software Requirements Specifications;
-pp.11 – 20 only) and fill out each section/sub-section. If a section/sub-section is not related to your project scope, you
-can skip (e.g., 5.2.1.3 Hardware Interface). Here, you should explain why you skipped it. 
-
-- [x] (iii) In order to fill out sections/sub-sections (e.g., 5.3.2 Functions), you should identify the existing functions, and suggest new functions
-and their features. List all the functions that your system should support. Consider any data requirement and data
-input/output of your system. Explain in as much detail as possible, for example, function environment, constraint,
-trade-off, and anything you may think important
-
-# Deliverables Stage 1 ----- DONE -----
-
-In this project, you should
-Submit a PDF in IEEE conference format (two-column, 10 pt, letter size), minimum two pages excludingappendices. The report must include:
-- [x] Project description and motivation (1 or 2 paragraphs)
-- [x]  Interview summary (half page). Full interview log goes in an appendix, which may be single-column.
-- [x]  SRS based on the IEEE Std 830-1998
-- [x]  Project plan (bullet points): based on your interview findings, list the modules or features you will build with a brief explanation of each
-- [x]  Prepare a 10 – 15 minute presentation accordingly and present your system and receive feedback from the instructor and other classmates during the class. The presentation schedule will be announced later.
-
-# Stage 2 ----- DONE -----
-
-- [x] Due date: Oct 18, 2026 (Sunday) before 11:59 PM
-- [x] Submit report (e.g., PDF) and presentation slides (e.g., PowerPoint) files through Canvas.
-- [x] Update the group webpage that should include
-• Group members and their roles for this stage
-• Group meetings and activities
-• Upcoming schedules
-- [x] the file names should include the stage and group_name, “stage#_group_name”. For example, stage2_MyGroup.pdf and stage2_MyGroup.pptx.
-<img width="713" height="234" alt="image" src="https://github.com/user-attachments/assets/61d112ba-2ef7-46db-bf33-8683c9594dc8" />
-
-# <u>Description</u>
-- (i) Analyze your system and decompose it into a set of modules (objects or subsystems). Use UML diagrams to
-represent the modules and their relationships. To better understand your system, provide (a) class diagram(s),
-(b) use case diagram(s), and (c) sequence diagram(s).
-- (ii) Explain the classes/objects/modules for each diagram.
-- (iii) Think about how your system’s interface might look. Design an initial version of a user interface – a low-
-fidelity prototype – using any tool. Hand-drawn sketches are okay as long as they are clearly visible. Include
-several screenshots in your report, each labeled with the functions it supports. Follow the golden rules for UI
-design (will be discussed in class).
-
-# Deliverables stage 2 ----- DONE -----
-
-- [x] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
--  Project description (1 paragraph)
--  system analysis and decomposition: UML diagrams – class, use case, and sequence diagrams
--  Low-fidelity prototype
--  Implementation plan (at least half page) including testbed, programming language, any
-development tool/device, etc
-- [x] Prepare a 10 - 15 minute presentation accordingly and present your system. The presentation schedule will be announced later.
-Clarity and correctness of the UML diagrams (use case, class, and sequence)
-- Clarity of low-fidelity prototype
-- Quality of project report
-- Quality of presentation (10 - 15 minutes)
-- Note: Although the report is two-column, diagrams may span both columns and should do so whenever
-needed for legibility. All text in a diagram must be readable without zooming in. Likewise, in the
-presentation slides, give each diagram its own full slide.
-- [x] Clarity and correctness of the UML diagrams (use case, class, and sequence)
-- [x] Clarity of low-fidelity prototype
-- [x] Quality of project report
-- [x] Quality of presentat
-
-
-<img width="802" height="330" alt="AI Cybersecurity Class Diagram" src="https://github.com/user-attachments/assets/dc92e366-7195-41e0-a313-ad74a9cadb13" />
-
-# Stage 3
-
-- [x] Due dates: Nov 10, 2026 (Tuesday) before 11:59 PM
-- [x] Submit report (e.g., PDF) and presentation slides (e.g., PowerPoint) files through Canvas.
-- [x] Update the group webpage that should include:
-- [x] Group members and their roles for this stage
-- [x] Group meetings and activities
-- [x] The file names should include project number and group_name, “stage#_ group_name”. For example,
-stage3_MyGroup.pdf and stage3_MyGroup.pptx. 
-- Total score 40%
-- Type all your team members’ FULL names on the cover pages of the project report and presentation slides.
-- NO hand-written project report will be accepted.
-
-
-# <u>Description</u>
-
-The primary goal of this stage is to conduct a full demo, validation, and discuss the project implementation details
-with the instructor. 
-
-# Deliverables Stage 3
-
-- [x] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
-- (i) Project overview
-    - (a) Revised project definition and motivation
-- (ii) Design details
-    - (a) Revised UML diagrams – class, use case, and sequence diagrams with explanations.
-- (iii) Implementation details including:
-      - (a) Implementation overview
-      - (b) How to implement your project? Any related key technique(s)
-      - (c) What functionalities have been done?
-      - (d) What functionalities remain to be done?
-      - (e) Any implementation/technical issue?
-- (iv) Each team member’s contribution in terms of design, development, etc.
-- (v) Validation of the developed application with the intended users
-- (vi) Remaining work and future extensions
-      - (a) Please write as much detail as possible using figures, pictures, tables, graphs, etc., if they can help.
-      - (b) Update the group project website.
-      - (c) Prepare a set of demo scenarios and conduct a 5 - 7 minutes full demo. 
-- (vii) Consider how to efficiently show your work.
-      - (a) All team members must attend in the demo. 
 
 </p>
 
