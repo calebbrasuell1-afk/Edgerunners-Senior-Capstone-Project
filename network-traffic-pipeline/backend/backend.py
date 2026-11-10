@@ -86,7 +86,7 @@ DB_PATH = Path(
 )
 sys.path.insert(0, str(ROOT / "pipeline"))
 import config  # noqa: F401  (loads .env)
-MODEL = os.environ.get("OLLAMA_MODEL", "llama3.2")
+MODEL = os.environ.get("OLLAMA_MODEL", "gemma3:4b")
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
 MAX_ROWS = 200
 
