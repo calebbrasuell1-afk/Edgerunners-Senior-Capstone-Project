@@ -1,10 +1,24 @@
 """Streamlit UI for browsing a SQLite database and calling backend.py."""
-
-#cd to the directory containing this file and run:
-
+# ============================================================
+# NETWORK TRAFFIC ANALYZER
+# ============================================================
+#
+# STEP 1: Open CMD (Command Prompt)
+#
+# cd to the directory containing this file and run:
+#
+# STEP 2: Navigate to the backend directory:
+#
+# download backend folder and move to network-traffic-pipeline folder, so you have C:\network-traffic-pipeline\backend
+#
 # pip install streamlit fastapi uvicorn requests
-
-# streamlit run UI_0.1.py
+#
+# Install Ollama (ollama.com), then run once: ollama pull gemma3:4b
+#
+# STEP 3: Run the Streamlit app: streamlit run UI_0_6.py
+#
+# STEP 4: Stop the server:
+# Press CTRL + C in CMD.
 
 
 
@@ -26,8 +40,8 @@ import altair as alt
     # not needed anymore, see line 146ish (line may change with future edits)
 from graphs import show_graphs
 
-st.set_page_config(page_title="Application Dashboard", layout="wide")
-st.title("Application Dashboard")
+st.set_page_config(page_title="Network Traffic Analyzer", layout="wide")
+st.title("Network Traffic Analyzer")
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -111,7 +125,7 @@ with st.sidebar:
                 st.code(backend_log.read_text(errors="replace")[-3000:] or "(empty)")
 
 
-database_tab, backend_tab, graphs_tab = st.tabs(["Database", "Backend", "Graphs"])
+database_tab, backend_tab, graphs_tab = st.tabs(["Database", "AI Assistant", "Visualization Graphs"])
 
 with database_tab:
     st.subheader("Browse database")
