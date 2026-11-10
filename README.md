@@ -13,16 +13,21 @@ The student teams are required to link the visualization and the AI chatbox to s
 <img width="257" height="266" alt="image" src="https://github.com/user-attachments/assets/0d51862d-d190-4c6c-b596-058406f265dd" />
 
 
-    Group Members          Roles
-    Caleb Brasuell     Leader / programmer 
-    Jacob Couger       Unavailable 
-    Nicholas Richard    programmer 
-    Michael Genovesi    programmer 
-    Arya Monfared       programmer 
+    Group Members             	Roles
+    Caleb Brasuell     	Leader / Programmer 
+    Jacob Couger       	UML Designer / Programmer 
+    Nicholas Richard   	UI Designer / Programmer
+    Michael Genovesi   	PowerPoint Designer/ Programmer 
+    Arya Monfared      	UML Designer / Programmer 
+
+
+
+<img width="712" height="203" alt="image" src="https://github.com/user-attachments/assets/806178a4-2c97-426a-bcf4-1ee168de3f09" />
+
 
 ## **Group meetings - TUE/THURS: 2pm**
 
-## **Upcoming schedules - TUESDAY: 2PM - FRIDAY: 2PM - SATURDAY: TBD**
+## **Upcoming schedules - No more upcoming events or meetings 
 
 It should automatically download the first 90 minutes of the data, and aggregate the data into a SQLite database, ready to be visualized. Please feel free to customize the codes, but you should at least extract the first 90 minutes of the raw data. 
 
@@ -116,13 +121,12 @@ presentation slides, give each diagram its own full slide.
 
 # Stage 3
 
-- [ ] Due dates: Nov 10, 2026 (Tuesday) before 11:59 PM
-- [ ] Submit report (e.g., PDF) and presentation slides (e.g., PowerPoint) files through Canvas.
-- [ ] Update the group webpage that should include:
-- [ ] Group members and their roles for this stage
-- [ ] Group meetings and activities
-- [ ] Validation results
-- [ ] The file names should include project number and group_name, “stage#_ group_name”. For example,
+- [x] Due dates: Nov 10, 2026 (Tuesday) before 11:59 PM
+- [x] Submit report (e.g., PDF) and presentation slides (e.g., PowerPoint) files through Canvas.
+- [x] Update the group webpage that should include:
+- [x] Group members and their roles for this stage
+- [x] Group meetings and activities
+- [x] The file names should include project number and group_name, “stage#_ group_name”. For example,
 stage3_MyGroup.pdf and stage3_MyGroup.pptx. 
 - Total score 40%
 - Type all your team members’ FULL names on the cover pages of the project report and presentation slides.
@@ -136,7 +140,7 @@ with the instructor.
 
 # Deliverables Stage 3
 
-- [ ] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
+- [x] Submit a PDF in IEEE conference format (two-column, 10 pt, letter size). The report must include:
 - (i) Project overview
     - (a) Revised project definition and motivation
 - (ii) Design details
